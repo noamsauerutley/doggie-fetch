@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     // assign html elements to variables
     const button = document.getElementById("fetch-button")
     const photoSection = document.getElementById("dog-photo")
+    const fetchedSection = document.getElementById("fetched-dogs-section")
     const fetchedList = document.getElementById("fetched-dogs-list")
     const footer = document.getElementById("footer")
     const toTop = document.createElement("a")
@@ -25,6 +26,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         footer.appendChild(toTop)
     }
 
+    function deletePlaceholder(){
+        // delete placeholder text above UL
+        if (fetchedList.getElementsByTagName("li").length > 0) {
+            document.getElementById("no-dogs-yet").remove()
+        }  
+    }
+
     function addName(fetchedName){
         // create new fetched dog <li>
         let fetchedDoggie = document.createElement("li")
@@ -32,7 +40,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         // attach fetched dog name
         fetchedDoggie.appendChild(fetchedDoggieName)
-        fetchedList.appendChild(fetchedDoggie)   
+        fetchedList.appendChild(fetchedDoggie)
+        deletePlaceholder()
+   
     }
 
     function sleep(ms) {
